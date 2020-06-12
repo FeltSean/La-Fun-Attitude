@@ -1,0 +1,10 @@
+{
+    "id": "lfa",
+    "name": "La Fun Attitude",
+    "description": "Thème de La Fun Attitude.",
+    "version": "0.1.0",
+    "url" : "https://mcshop.la-fun-attitude.fr",
+    "authors": [
+        "KelenS"
+    ]
+}

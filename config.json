@@ -1,0 +1,23 @@
+{
+    "color": "red",
+    "home_title": null,
+    "title": "Actualit\u00e9s",
+    "play_button_link": "/play",
+    "footer_description": "Nous voulons \u00eatre une grande famille o\u00f9 r\u00e8gne un \u00e9tat d\u2019esprit soud\u00e9 et convivial ! N\u2019attends plus et rejoins nous ! La fun attitude est une team et communaut\u00e9 multigaming , MOBA, MMORPG, FPS, BAC A SABLE\u2026 Nous avons pour but de r\u00e9unir des joueurs passionn\u00e9s avec le m\u00eame \u00e9tat d\u2019esprit que le notre : l\u2019entraide, le partage et le respect qui sont des valeurs importantes et essentielles pour nous. Tout est mis en \u0153uvre pour que nos membres puissent trouver une structure organis\u00e9e et compl\u00e8te. Nous souhaitons que la fun attitude soit reconnu comme une team ambitieuse respectant ses valeurs. Tous les types de profils sont accept\u00e9s sur la fun attitude, que vous soyez dans une optique purement fun ou purement comp\u00e9titive, nous esp\u00e9rons que vous puissiez trouver vos marques rapidement en notre compagnie !",
+    "footer_links": [
+        {
+            "name": "Site principal",
+            "value": "https://la-fun-attitude.fr"
+        },
+        {
+            "name": "Nos serveurs",
+            "value": "http://la-fun-attitude.fr/listes-des-serveurs/"
+        }
+    ],
+    "footer_social_twitter": null,
+    "footer_social_discord": "http://discord.la-fun-attitude.com",
+    "footer_social_youtube": "https://www.youtube.com/channel/UCO8sKZ_LMdhvaPybIsEo8vA",
+    "footer_social_teamspeak": "ts3server://ts.la-fun-attitude.com:9987",
+    "footer_social_instagram": null,
+    "footer_social_steam": "#"
+}
