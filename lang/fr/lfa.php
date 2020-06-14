@@ -3,7 +3,7 @@
 return [
     'header' => [
         'online' => ':count joueur en ligne|:count joueurs en ligne',
-        'offline' => 'Le serveur est éteint',
+        'offline' => 'Le serveur est indisponible',
     ],
     'clipboard' => [
         'copied' => 'Copié !',
@@ -22,6 +22,7 @@ return [
         'title' => 'Titre des news',
         'use_play_button' => 'Afficher un bouton "Jouer" et masquer l\'ip du serveur',
         'play_button_link' => 'Lien du bouton "Jouer"',
+        'discord' => 'ID du serveur Discord',
         'footer_description' => 'Description du footer',
         'footer_links' => 'Liens du footer',
     ],

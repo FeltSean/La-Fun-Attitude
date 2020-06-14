@@ -1,9 +1,17 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark">
+        <a class="" href="{{ route('home') }}">
+
+            <div class="">
+
+                <img style="max-height: 64px; max-width: 64px; max-width: 100%; height: auto;" src="{{ site_logo() }}" alt="{{ site_name() }}" data-tilt data-tilt-scale="1.1">
+
+            </div>
+
+        </a>
+
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                
-            </a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,6 +63,50 @@
             </div>
         </div>
         <a href="/shop" class="nav-link shop shop2" style="color: white;"><span class="shopg"></span>Boutique</a>
+        <div class="">
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    @auth
+                        @include('elements.notifications')
+
+                        <span class="dropdown">
+                            <a id="userDropdown" class="btn btn-outline-light btn-rounded dropdown-toggle my-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                {{ trans('messages.nav.profile') }}
+                            </a>
+
+                            @if(Auth::user()->hasAdminAccess())
+                                <a class="dropdown-item admin" href="{{ route('admin.dashboard') }}">
+                                    {{ trans('messages.nav.admin') }}
+                                </a>
+                            @endif
+
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ trans('auth.logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                        </span>
+                    @else
+                        <div class="my-1 ml-lg-5 btn-group">
+                            @if(Route::has('register'))
+                                <a class="btn btn-outline-light btn-rounded" href="{{ route('register') }}">{{ trans('auth.register') }}</a>
+                            @endif
+                            <a class="btn btn-outline-light btn-rounded" href="{{ route('login') }}">{{ trans('auth.login') }}</a>
+                        </div>
+                    @endauth
+                </div>
+            </div>
+        </div>
+    </div>
     </nav>
 
 <style>
@@ -104,76 +156,5 @@
 }
             </style>
 
-    <div class="sub-navbar bg-primary py-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                    <div class="media mr-lg-5 align-items-center">
-                        <i class="fas fa-signal "></i>
-                        <div class="media-body">
-                            @if($server)
-                                @if(theme_config('use_play_button') !== 'on')
-                                    <div data-toggle="tooltip" title="{{ trans('messages.actions.copy') }}" data-copy-target="address" data-copied-messages="{{ implode('|', trans('theme::lfa.clipboard')) }}">
-                                        <input type="text" class="copy-address bg-primary-darker h5 text-center" id="address" style="width: {{ strlen($server->address) / 2 }}em" value="{{ $server->address }}" readonly>
-                                    </div>
-                                @else
-                                    <div>
-                                        <h5 class="mb-0">{{ $server->name }}</h5>
-                                    </div>
-                                @endif
-                                {{ trans_choice('theme::lfa.header.online', $server->getOnlinePlayers()) }}
-                            @else
-                                <h5 class="mb-0">{{ trans('theme::lfa.header.offline') }}</h5>
-                            @endif
-                        </div>
-
-                        @if(theme_config('use_play_button') === 'on')
-                            <a href="{{ theme_config('play_button_link') }}" class="btn btn-outline-light btn-rounded ml-3">
-                                {{ trans('theme::lfa.play') }}
-                            </a>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="col-md-6 text-center">
-                    @auth
-                        @include('elements.notifications')
-
-                        <span class="dropdown">
-                            <a id="userDropdown" class="btn btn-outline-light btn-rounded dropdown-toggle my-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('profile.index') }}">
-                                {{ trans('messages.nav.profile') }}
-                            </a>
-
-                            @if(Auth::user()->hasAdminAccess())
-                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
-                                    {{ trans('messages.nav.admin') }}
-                                </a>
-                            @endif
-
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ trans('auth.logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                        </span>
-                    @else
-                        <div class="my-1 ml-lg-5 btn-group">
-                            @if(Route::has('register'))
-                                <a class="btn btn-outline-light btn-rounded" href="{{ route('register') }}">{{ trans('auth.register') }}</a>
-                            @endif
-                            <a class="btn btn-outline-light btn-rounded" href="{{ route('login') }}">{{ trans('auth.login') }}</a>
-                        </div>
-                    @endauth
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </header>

@@ -8,6 +8,8 @@
 
 @section('content')
 
+<link rel="stylesheet" href="{{ theme_asset('css/arya.css') }}">
+
     <!--Bannière / Title -->
 
     <div class="home-background mb-4" style="background: url('{{ setting('background') ? image_url(setting('background')) : 'https://via.placeholder.com/2000x500' }}') no-repeat center / cover">
@@ -22,15 +24,23 @@
 
                         <h1 class="welcome-title">{{ theme_config('home_title') }}</h1>
 
-                    </div>
+        @endif
 
+        <br>
+        <div class="font-link subtitle align-items-center justify-content-center h-100">
+            @if($server && ($playersCount = $server->getOnlinePlayers()) >= 0)
+            <h1 style="text-align: center;" class="subtitle">{{ $server->address }}</h4>
+            <h3 class="subtitle"><i class="fas fa-play"></i> {{ $playersCount }}</h3>
+            @else
 
+            <h4 class="font-link">{{ trans('theme::lfa.header.offline') }}</h4>                      
+            @endif
+        </div>
+                  </div>
 
                 </div>
 
-            </div>
-
-        @endif
+            </div>  
 
     </div>
 
@@ -38,48 +48,48 @@
 
     <div class="container">
 
-    	<center><h1><a style="color:#fff;" href="/news">{{ theme_config('title') }}</a></h1></center>
+        <center><h1><a style="color:#fff;" href="/news">{{ theme_config('title') }}</a></h1></center>
 
         <div class="row">
+            <div class="col-md-8">
+                @foreach($posts as $post)
+                    <div class="post-preview mb-3">
+                        @if($post->image !== null)
+                            <img src="{{ $post->imageUrl() }}" class="post-img img-fluid" alt="{{ $post->title }}">
+                        @endif
 
-            @foreach($posts as $post)
-
-                <div class="col-md-6 mb-4">
-
-                    <div class="post-preview">
-
-                        <a href="{{ route('posts.show', $post->slug) }}" class="link-unstyled">
-
-                            @if($post->hasImage())
-
-                                <img src="{{ $post->imageUrl() }}" alt="{{ $post->title }}" class="img-fluid rounded">
-
-
-
-                                <div class="title p-3">{{ $post->title }}</div>
-
-                            @else
-
-                                <div class="preview-content p-4">
-
-                                    <h4>{{ $post->title }}</h4>
-
-                                    {{ Str::limit(strip_tags($post->content), 450) }}
-
-                                </div>
-
+                        <div class="post-body">
+                            <h3><a href="{{ route('posts.show', $post->slug) }}" style="color: #ffffff;">{{ $post->title }}</a></h3>
+                            @if($post->image === null)
+                                <p>{{ Str::limit(strip_tags($post->content), 250, '...') }}
+                                    <a href="{{ route('posts.show', $post->slug) }}">{{ trans('messages.posts.read') }}</a>
+                                </p>
                             @endif
 
-                        </a>
-
+                            {{ trans('messages.posts.posted', ['date' => format_date($post->published_at), 'user' => $post->author->name]) }}
+                        </div>
                     </div>
+                @endforeach
+            </div>
+            <div class="col-md-4">
 
-                </div>
+                <!-- Widget Discord -->
 
-            @endforeach
+                @if(config('theme.discord-id'))
+                    <iframe src="https://discordapp.com/widget?id={{ config('theme.discord-id') }}&theme=dark" title="Discord" height="500" class="discord-widget shadow mb-3" allowtransparency="true"></iframe>
+                @endif
 
+                <!-- Widget Twitter -->
+
+                @if(config('theme.twitter'))
+                    <div class="twitter-widget shadow">
+                        <a class="twitter-timeline" data-theme="dark" data-height="500" href="{{ config('theme.twitter') }}">Tweets de {{ site_name() }}</a>
+                    </div>
+                @endif
+
+                
+            </div>
         </div>
-
     </div>
 
 <!-- Bouton haut -->
@@ -95,3 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 @endsection
+
+@push('scripts')
+    <script src="https://platform.twitter.com/widgets.js" async></script>
+@endpush

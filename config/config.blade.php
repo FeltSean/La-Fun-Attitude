@@ -104,6 +104,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="discordInput">{{ trans('theme::prism.config.discord') }}</label>
+                    <input type="text" class="form-control @error('discord-id') is-invalid @enderror" id="discordInput" name="discord-id" value="{{ old('discord-id', config('theme.discord-id')) }}">
+
+                    @error('discord-id')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label for="footerDescriptionInput">{{ trans('theme::prism.config.footer_description') }}</label>
                     <textarea class="form-control @error('footer_description') is-invalid @enderror" id="footerDescriptionInput" name="footer_description" rows="3">{{ old('footer_description', theme_config('footer_description')) }}</textarea>
 

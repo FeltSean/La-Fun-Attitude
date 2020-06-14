@@ -22,6 +22,7 @@ return [
         'title' => 'Titre des news',
         'use_play_button' => 'Add a "play" button and hide the server IP',
         'play_button_link' => '"Play" button link',
+        'discord' => 'Discord server ID',
         'footer_description' => 'Footer description',
         'footer_links' => 'Footer links',
         'twitter' => 'Twitter',

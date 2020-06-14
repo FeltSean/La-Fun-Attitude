@@ -8,6 +8,7 @@ return [
     'title' => 'nullable|string',
     'use_play_button' => ['filled'],
     'play_button_link' => ['required_with:use_play_button'],
+    'discord-id' => 'nullable|string',
     'footer_description' => 'required|string',
     'footer_links' => 'nullable|array',
     'footer_social_twitter' => 'nullable|string',
